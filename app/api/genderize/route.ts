@@ -5,11 +5,16 @@ export async function GET(request: Request) {
   const name = searchParams.get("name");
 
   if (!name) {
-    return NextResponse.json({ error: "Missing 'name' parameter" }, { status: 400 });
+    return NextResponse.json(
+      { error: "Missing 'name' parameter" },
+      { status: 400 }
+    );
   }
 
   try {
-    const response = await fetch(`https://api.genderize.io/?name=${encodeURIComponent(name)}`);
+    const response = await fetch(
+      `https://api.genderize.io/?name=${encodeURIComponent(name)}`
+    );
     const data = await response.json();
 
     return NextResponse.json(data);
